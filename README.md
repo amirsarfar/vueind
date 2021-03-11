@@ -1,4 +1,9 @@
-# test-vue-env
+# vueind
+
+A project made for my personal everyday use, powered by Vue 3 and Tailwindcss !
+
+## Goal
+Create reusable components to be used in other projects
 
 ## Project setup
 ```
@@ -14,11 +19,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
