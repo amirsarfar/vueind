@@ -9,13 +9,32 @@ Create reusable components to be used in other projects
 ```
 npm install
 ```
-
 ### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
-
 ### Compiles and minifies for production
 ```
 npm run build
 ```
+
+## Currently available components
+- Form components:
+    - Input
+
+
+## Form components
+### Input
+Located at ` src/components/form/ ` 
+
+Props: 
+- type
+- name
+- label
+- value
+
+Usage:
+```
+<Input name="lastname" type="text" label="Last Name" value="Sarfar"></Input>
+```
+
