@@ -19,11 +19,11 @@ npm run build
 ```
 
 ## Currently available components
-- Form components:
+- Form
     - Input
 
 
-## Form components
+## Form
 ### Input
 Located at ` src/components/form/ ` 
 
