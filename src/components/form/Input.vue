@@ -2,11 +2,12 @@
   <div class="input-control">
     <label :for="name" :class="labelClasses">{{ label }}</label>
     <input
-      class="rounded border-gray-300 border focus:outline-none focus:ring focus:border-gray-50 focus:ring-blue-200"
+      :class="inputClasses"
       :type="type"
       :name="name"
       @focus="inputFocused"
       @blur="inputBlured"
+      @keyup="inputChanged"
       v-model="val"
     />
   </div>
@@ -19,12 +20,16 @@ export default {
     name: String,
     label: String,
     type: String,
-    value: Object
+    value: String,
+    pattern: String,
+    required: Boolean
   },
   data() {
     return {
       focused: false,
-      val: this.value ? this.value : ""
+      val: this.value ? this.value : "",
+      isValid: true,
+      isTouched: false
     };
   },
   computed: {
@@ -32,6 +37,21 @@ export default {
       return {
         "hover-label": this.focused || this.val.trim() != ""
       };
+    },
+    inputClasses() {
+      return [
+        "rounded border-gray-300 border focus:outline-none focus:ring focus:border-gray-50 focus:ring-blue-200",
+        this.isValid ? "ring-green-300" : "ring-red-300",
+        this.shouldShowRing ? "ring" : ""
+      ];
+    },
+    shouldShowRing() {
+      return (
+        this.pattern != undefined &&
+        this.pattern != "" &&
+        (this.required || this.val.trim() != "") &&
+        this.isTouched
+      );
     }
   },
   methods: {
@@ -40,6 +60,15 @@ export default {
     },
     inputBlured() {
       this.focused = false;
+    },
+    inputChanged() {
+      this.isTouched = true;
+      var re = new RegExp(this.pattern, "i");
+      if (re.test(this.val)) {
+        this.isValid = true;
+        return;
+      }
+      this.isValid = false;
     }
   }
 };
